@@ -12,8 +12,8 @@ class TestCanAccessGooglePage(unittest.TestCase):
                                              ) -> None:
         mock_url.return_value = True
         mock_internet.return_value = True
-        self.assertTrue(can_access_google_page("https://www.google.com"),
-                        "Accessible")
+        self.assertEqual(can_access_google_page("https://www.google.com"),
+                         "Accessible")
 
     @patch("app.main.has_internet_connection")
     @patch("app.main.valid_google_url")
@@ -23,8 +23,8 @@ class TestCanAccessGooglePage(unittest.TestCase):
                               ) -> None:
         mock_url.return_value = True
         mock_internet.return_value = False
-        self.assertTrue(can_access_google_page("https://www.google.com"),
-                        "Not accessible")
+        self.assertEqual(can_access_google_page("https://www.google.com"),
+                         "Not accessible")
 
     @patch("app.main.has_internet_connection")
     @patch("app.main.valid_google_url")
@@ -34,8 +34,8 @@ class TestCanAccessGooglePage(unittest.TestCase):
                                ) -> None:
         mock_url.return_value = False
         mock_internet.return_value = True
-        self.assertTrue(can_access_google_page("https://www.google.com"),
-                        "Not accessible")
+        self.assertEqual(can_access_google_page("https://www.google.com"),
+                         "Not accessible")
 
     @patch("app.main.has_internet_connection")
     @patch("app.main.valid_google_url")
@@ -45,5 +45,5 @@ class TestCanAccessGooglePage(unittest.TestCase):
                                                ) -> None:
         mock_url.return_value = False
         mock_internet.return_value = False
-        self.assertTrue(can_access_google_page("https://www.google.com"),
-                        "Not accessible")
+        self.assertEqual(can_access_google_page("https://www.google.com"),
+                         "Not accessible")
